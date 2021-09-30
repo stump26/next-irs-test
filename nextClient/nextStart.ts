@@ -1,7 +1,7 @@
 import next from "next";
 import path from "path";
 
-import conf from "./nextClient/next.config.js";
+import conf from "./next.config.js";
 
 export async function createNextServer() {
   const nextServer = next({

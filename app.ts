@@ -1,5 +1,5 @@
 import express from "express";
-import { createNextServer } from "./nextStart";
+import { createNextServer } from "./nextClient/nextStart";
 
 const app = express();
 const nextServer = createNextServer();
