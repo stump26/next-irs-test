@@ -1,0 +1,18 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.icon {
+  width: 200px;
+  height: 200px;
+}
+
+.hash {
+  font-size: 20px;
+  font-weight: bold;
+}
