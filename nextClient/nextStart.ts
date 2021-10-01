@@ -3,14 +3,12 @@ import path from "path";
 
 import conf from "./next.config.js";
 
-export async function createNextServer() {
+export function createNextServer() {
   const nextServer = next({
     dev: process.env.NODE_ENV !== "production",
     conf,
     dir: path.resolve("./nextClient"),
   });
-
-  await nextServer.prepare();
 
   return nextServer;
 }

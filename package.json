@@ -8,6 +8,7 @@
     "start:prod": "NODE_ENV=production ts-node server",
     "build:next": "next build nextClient",
     "cy:open": "cypress open",
+    "cy:run": "cypress run --spec './cypress/integration/random-hash-page/retrieve.spec.ts'",
     "e2e:open": "start-server-and-test 'ts-node server' 'http://localhost:3000' cy:open",
     "e2e:prod:open": "start-server-and-test start:prod 'http://localhost:3000' cy:open",
     "e2e:prod:run": "start-server-and-test start:prod 'http://localhost:3000' cy:run"
