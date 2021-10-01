@@ -5,8 +5,11 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon --ext 'ts,tsx,json' --exec ts-node server",
+    "start:prod" : "NODE_ENV=production ts-node server",
+    "build:next": "next build nextClient",
     "cy:open": "cypress open",
-    "e2e:open": "start-server-and-test 'ts-node server' 'http://localhost:3000' cy:open"
+    "e2e:open": "start-server-and-test 'ts-node server' 'http://localhost:3000' cy:open",
+    "e2e:prod:open": "start-server-and-test start:prod 'http://localhost:3000' cy:open"
   },
   "author": "",
   "license": "ISC",
