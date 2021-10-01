@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon --ext 'ts,tsx,json' --exec ts-node server"
+    "start": "nodemon --ext 'ts,tsx,json' --exec ts-node server",
+    "cy:open": "cypress open",
+    "e2e:open": "start-server-and-test 'ts-node server' 'http://localhost:3000' cy:open"
   },
   "author": "",
   "license": "ISC",
@@ -20,8 +22,10 @@
   "devDependencies": {
     "@types/node": "^16.10.2",
     "@types/react": "^17.0.25",
+    "cypress": "^8.5.0",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
+    "start-server-and-test": "^1.14.0",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.3"
   }
