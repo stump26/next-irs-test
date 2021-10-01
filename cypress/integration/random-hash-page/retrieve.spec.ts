@@ -2,7 +2,7 @@
 import createHash from 'hash-generator'
 
 describe('random page retrieve',()=>{
-  const RETRIEVE_COUNT = 10000
+  const RETRIEVE_COUNT = 1000
   
   for(let i=0;i<RETRIEVE_COUNT;i++){
     const hash = createHash(15)

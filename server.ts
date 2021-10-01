@@ -16,7 +16,8 @@ const readIsrResultFileStat = async (filePath: string) => {
 const app = express();
 const nextApp = createNextServer();
 const handle = nextApp.getRequestHandler();
-
+let errorCount = 0;
+let hitCount = 0;
 nextApp.prepare().then(() => {
   // Attach Next.js Server
   app.get("*", async (req, res) => {
@@ -30,6 +31,12 @@ nextApp.prepare().then(() => {
           const used = process.memoryUsage().heapUsed / 1024 / 1024;
           logger.info(
             `The script uses approximately ${Math.round(used * 100) / 100} MB`
+          );
+          logger.info(
+            `hitCount:${hitCount} errorCount:${errorCount} hitRate:${(
+              (hitCount / (hitCount + errorCount)) *
+              100
+            ).toFixed(1)}%`
           );
           try {
             const htmlStats = await readIsrResultFileStat(path + ".html");
@@ -50,11 +57,13 @@ nextApp.prepare().then(() => {
                 },
               },
             });
+            hitCount += 1;
           } catch (e) {
             logger.error(e);
+            errorCount += 1;
           }
         }
-      }, 10);
+      }, 0);
     });
   });
 

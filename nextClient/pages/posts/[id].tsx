@@ -36,12 +36,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       id,
       identicon,
     },
-    revalidate: 60,
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const hashs: string[] = hashGeneratorHelper({ length: 15, count: 1000 })
+  const hashs: string[] = hashGeneratorHelper({ length: 15, count: 10000 })
 
   const paths = hashs.map(hash => {
     return { params: { id: hash } }
