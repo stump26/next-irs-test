@@ -1,4 +1,5 @@
 import express from "express";
+import logger from './logger'
 import fs from "fs";
 
 import { createNextServer } from "./nextClient/nextStart";
@@ -28,25 +29,36 @@ app.get("*", async (req, res) => {
   res.timer = process.hrtime();
   if (!handle) {
     handle = (await nextServer).getRequestHandler();
+  }
+  if(handle) {
     // ISR 결과물
-    if (handle && req.url?.match("/posts/")) {
+    logger.info(req.url)
+    if (req.url?.match("/posts/")) {
       (async () => {
         const path = req.url;
         const used = process.memoryUsage().heapUsed / 1024 / 1024;
-        console.log(
+        logger.info(
           `The script uses approximately ${Math.round(used * 100) / 100} MB`
         );
         try {
           const htmlStats = await readIsrResultFileStat(path + ".html");
           const jsonStats = await readIsrResultFileStat(path + ".json");
           const pong = process.hrtime(res.timer);
-          console.log(
-            `req_path: ${req.url},\n`+
-            `res_time: ${(pong[0] * 1000000000 + pong[1]) / 1000000}ms,\n`+
-            `result:{\n`+
-            `\thtml: ${path + ".html"}\t ${htmlStats.size / 1000}kb`+
-            `json: ${path + ".json"}\t ${jsonStats.size / 1000}kb\n`+
-            `}`);
+          
+          logger.info(`req_path: ${req.url}`,{
+            req_path:req.url,
+            res_time:`${(pong[0] * 1000000000 + pong[1]) / 1000000}ms`,
+            result:{
+              html:{
+                path: path + ".html",
+                size:`${htmlStats.size / 1000}kb`
+              },
+              json:{
+                path: path + ".json",
+                size:`${jsonStats.size / 1000}kb`
+              }
+            }
+          })
         } catch (e) {
           console.log(e);
         }

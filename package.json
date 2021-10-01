@@ -5,11 +5,12 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon --ext 'ts,tsx,json' --exec ts-node server",
-    "start:prod" : "NODE_ENV=production ts-node server",
+    "start:prod": "NODE_ENV=production ts-node server",
     "build:next": "next build nextClient",
     "cy:open": "cypress open",
     "e2e:open": "start-server-and-test 'ts-node server' 'http://localhost:3000' cy:open",
-    "e2e:prod:open": "start-server-and-test start:prod 'http://localhost:3000' cy:open"
+    "e2e:prod:open": "start-server-and-test start:prod 'http://localhost:3000' cy:open",
+    "e2e:prod:run": "start-server-and-test start:prod 'http://localhost:3000' cy:run"
   },
   "author": "",
   "license": "ISC",
@@ -20,7 +21,8 @@
     "next": "11.1.2",
     "nodemon": "^2.0.13",
     "react": "^17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/node": "^16.10.2",
